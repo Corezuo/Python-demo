@@ -33,11 +33,3 @@ try:
     print("time2: ", time2)
 except BaseException as e:
     print("exception:", e)
-
-
-
-
-
-
-# 字符串转化为时间戳
-# time.strftime("%Y-%m-%d", "2018")
