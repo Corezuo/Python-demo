@@ -9,6 +9,8 @@ verify_ssl = true
 flask = "*"
 requests = "*"
 mysql-connector = "*"
+beautifulsoup4 = "*"
+lxml = "*"
 
 [requires]
 python_version = "3.6"
