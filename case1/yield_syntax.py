@@ -17,6 +17,7 @@ print("---------------------------------")
 
 # 遍历字典
 data = {"name": "dazuo", "age": 22}
+# 字典转列表
 for k, v in data.items():
     print("k: ", k, " v: ", v)
 
