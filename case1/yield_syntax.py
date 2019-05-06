@@ -23,6 +23,16 @@ for k, v in data.items():
 
 print("---------------------------------")
 
+# enumerate：将一个可遍历的数据对象(如列表、元组或字符串)组合为一个索引序列
+print("enumerate: ", enumerate(data))
+for k, v in enumerate(data):
+    print("data k: ", k, " v: ", v)
+
+for k, v in enumerate(count):
+    print("count k: ", k, " v: ", v)
+
+print("---------------------------------")
+
 
 # yield的用法
 def foo():
