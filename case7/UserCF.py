@@ -55,9 +55,9 @@ class UserBasedCF:
 
     # 计算用户之间的相似度
     def calc_user_sim(self):
+        print('Building movie-user table ...')
         # 构建“电影-用户”倒排表
         # key = movieID, value = list of userIDs who have seen this movie
-        print('Building movie-user table ...')
         movie_user = {}
         for user, movies in self.trainSet.items():
             for movie in movies:
@@ -69,7 +69,7 @@ class UserBasedCF:
         self.movie_count = len(movie_user)
         print('Total movie number = %d' % self.movie_count)
 
-        # 构建用户相似度矩阵（
+        # 构建用户相似度矩阵
         print('Build user co-rated movies matrix ...')
         for movie, users in movie_user.items():
             # 迭代：某一部电影的相识度矩阵
@@ -92,33 +92,49 @@ class UserBasedCF:
 
     # 针对目标用户U，找到其最相似的K个用户，产生N个推荐
     def recommend(self, user):
+        # 最相似的K个用户
         k = self.n_sim_user
+        # 取N个推荐
         n = self.n_rec_movie
+        # 推荐的电影列表
         rank = {}
+        # 目标用户看过的电影
         watched_movies = self.trainSet[user]
 
-        # v=similar user, wuv=similar factor
+        # 从倒排表中找到最相似的K个用户
+        # v=similar user（用户）, wuv=similar factor（相似度）
         for v, wuv in sorted(self.user_sim_matrix[user].items(), key=itemgetter(1), reverse=True)[0:k]:
-            for movie in self.trainSet[v]:
-                if movie in watched_movies:
+            # 找出相似用户看过的电影
+            for m in self.trainSet[v]:
+                # 过滤掉目标用户看过的电影
+                if m in watched_movies:
                     continue
-                rank.setdefault(movie, 0)
-                rank[movie] += wuv
+                rank.setdefault(m, 0)
+                # 计算用户u对电影m的感兴趣程度（即：同一部电影，多个用户的相似度 进行 等差数列求和）
+                rank[m] += wuv
+
+        # 通过感兴趣程度，取最高的N个推荐
         return sorted(rank.items(), key=itemgetter(1), reverse=True)[0:n]
 
     # 产生推荐并通过准确率、召回率和覆盖率进行评估
     def evaluate(self):
         print("Evaluation start ...")
+        # 推荐的K个电影
         n = self.n_rec_movie
-        # 准确率和召回率
+
+        # 命中的电影数量（有重复）
         hit = 0
+        # 推荐的电影总数（有重复）
         rec_count = 0
+        # 测试集 用户看过的电影总数（有重复）
         test_count = 0
-        # 覆盖率
+        # 所有推荐的电影（不重复）
         all_rec_movies = set()
 
         for i, user, in enumerate(self.trainSet):
+            # 测试集-用户看过的电影
             test_movies = self.testSet.get(user, {})
+            # 被推荐的电影
             rec_movies = self.recommend(user)
             for movie, w in rec_movies:
                 if movie in test_movies:
@@ -127,10 +143,13 @@ class UserBasedCF:
             rec_count += n
             test_count += len(test_movies)
 
+        # 推荐准确率 = 命中的电影数 / 系数 * 推荐的总数
         precision = hit / (1.0 * rec_count)
+        # 召回率 = 命中的电影数 / 系数 * 测试集中用户看过的电影总数
         recall = hit / (1.0 * test_count)
+        # 覆盖率 = 所有推荐的电影数 / 系数 * 电影的总数
         coverage = len(all_rec_movies) / (1.0 * self.movie_count)
-        print('precisioin=%.4f\trecall=%.4f\tcoverage=%.4f' % (precision, recall, coverage))
+        print('precision=%.4f\trecall=%.4f\tcoverage=%.4f' % (precision, recall, coverage))
 
 
 if __name__ == '__main__':
