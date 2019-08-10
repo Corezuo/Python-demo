@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 
 import json
+from logger import Logger
+
+Log = Logger.get_log()
 
 """
 接口列表
@@ -13,7 +16,18 @@ import json
 
 # 海报列表成功的回调
 def select_active_poster_list_succ_callback(content):
-    print(content)
+    if content["code"] == 9:
+        Log.info("【查询海报列表】发生异常：", content["msg"])
+        return False
+
+    # 预期结果校验，检查是否包含指定的报名海报：10176
+    poster_list = content["data"]
+    for poster in poster_list:
+        if poster["id"] == 10176:
+            return True
+
+    Log.error("【查询海报列表】发生异常，未能找到指定的千人报名海报！")
+    return False
 
 
 selectActivePosterList = {

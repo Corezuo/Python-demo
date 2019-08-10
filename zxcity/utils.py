@@ -26,7 +26,7 @@ def unified_post(cmd, data, succ_callback):
     response = requests.post(url=env["url"], data=form_data, headers=env["headers"], timeout=10)
     if response.status_code == 200:
         content = json.loads(response.content)
-        succ_callback(content)
+        return succ_callback(content)
     else:
         _err_callback(response.reason)
 

@@ -7,6 +7,9 @@ Created by zfh on 2018/11/21
 
 import utils
 import api_list
+from logger import Logger
+
+Log = Logger.get_log()
 
 
 """
@@ -16,7 +19,8 @@ import api_list
 # 1.查询海报列表
 def test_select_active_poster_list():
     api = api_list.selectActivePosterList
-    utils.unified_post(api["cmd"], api["data"], api["succ_callback"])
+    result = utils.unified_post(api["cmd"], api["data"], api["succ_callback"])
+    print(result)
 
 # 2.查询是否有报名资格
 def test_select_recommend_qualifications():
@@ -56,11 +60,11 @@ def test_unified_order_callback():
 
 if __name__ == '__main__':
     test_select_active_poster_list()
-    test_select_recommend_qualifications()
-    test_select_active_poster_byid_callback()
-    test_get_all_merchant_trade_list_callback()
-    test_select_sign_detail_callback()
-    test_select_byphone_callback()
-    test_active_poster_singup_callback()
-    test_unified_order_callback()
+    # test_select_recommend_qualifications()
+    # test_select_active_poster_byid_callback()
+    # test_get_all_merchant_trade_list_callback()
+    # test_select_sign_detail_callback()
+    # test_select_byphone_callback()
+    # test_active_poster_singup_callback()
+    # test_unified_order_callback()
 
