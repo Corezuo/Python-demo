@@ -5,9 +5,6 @@
 效果参考图
 ![鱼塘热榜](./doc/toplist.png)
 
-**使用方式**
+### My-spider
 
-TODO: 
-
-
-
+> 访问地址：http://localhost:8080/index
