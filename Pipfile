@@ -6,12 +6,10 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-flask = "*"
 requests = "*"
-mysql-connector = "*"
 beautifulsoup4 = "*"
-lxml = "*"
-pyexecjs = "*"
+flask = "*"
+apscheduler = "*"
 
 [requires]
 python_version = "3.7"

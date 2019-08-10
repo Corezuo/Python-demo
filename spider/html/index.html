@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>知乎Top 50</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container" ng-controller="myCtrl">
+        <div class="row">
+            <h2>知乎Top 50</h2>
+        </div>
+        <div class="row">
+            <h4 ng-repeat="(key, value) in hotList">
+                <span><b>{{key + 1}}.</b></span>
+                <a target="_blank" class="" href="{{value.link}}">
+                    {{value.title}}
+                </a>
+                <span style="color: red">{{value.metrics}}</span>
+            </h4>
+        </div>
+    </div>
+
+    <script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.5/angular.js"></script>
+    <script type="application/javascript">
+        var myApp = angular.module('myApp', []);
+        myApp.controller('myCtrl', ['$scope', '$http', function myCtrl($scope, $http) {
+            // 请求热点数据
+            $http({
+                url: "http://localhost:8080/hot-list",
+                method: "GET",
+                headers: {}
+            }).then(function (res) {
+                console.log("================ 请求的数据 ===================");
+                console.log(res);
+                console.log("================ 请求的数据 ===================");
+                $scope.hotList = res.data;
+            }, function (res) {
+                console.log("请求失败！", res);
+            });
+        }])
+    </script>
+</body>
+</html>
