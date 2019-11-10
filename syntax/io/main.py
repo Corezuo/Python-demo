@@ -24,7 +24,7 @@ os.mkdir(path)
 # 删除目录
 os.rmdir(path)
 # 新建文件
-path = "F:/mypy/case1/main2.py"
+path = "F:/mypy/syntax/main2.py"
 t = os.path.split(path)
 print("拆分路径返回tuple: ", t)
 print("文件扩展名：", os.path.splitext(path))

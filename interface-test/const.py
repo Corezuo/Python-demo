@@ -6,7 +6,7 @@
 
 # 测试
 dev = {
-    "url": "http://139.129.216.37:81/zxcity_restful/ws/rest",
+    "url": "http://139.xx.xx.37:81/zxcity_restful/ws/rest",
     "headers": {
         "Accept": "*/*",
         "Cache-Control": "no-cache",

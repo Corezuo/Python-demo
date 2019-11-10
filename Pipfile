@@ -1,6 +1,6 @@
 [[source]]
 name = "pypi"
-url = "https://pypi.org/simple"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
 verify_ssl = true
 
 [dev-packages]
@@ -10,6 +10,10 @@ requests = "*"
 beautifulsoup4 = "*"
 flask = "*"
 apscheduler = "*"
+lxml = "*"
+mysql-connector = "*"
+pyecharts = "*"
+snapshot-selenium = "*"
 
 [requires]
 python_version = "3.7"

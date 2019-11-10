@@ -5,10 +5,9 @@ Python操作MySQL数据库
 驱动：mysql-connector
 Created by zfh on 2018/11/20
 """
-
 import mysql.connector
 
-conn = mysql.connector.connect(user="root", passwd="123456", host="127.0.0.1", database="bulb")
+conn = mysql.connector.connect(user="root", passwd="123456", host="127.0.0.1", database="mooc")
 cur = conn.cursor()
 
 # 查询一条数据
@@ -19,7 +18,7 @@ cur = conn.cursor()
 # conn.commit()
 
 # 查询数据
-cur.execute("SELECT * FROM `user` WHERE id = %s", (3,))
+cur.execute("SELECT * FROM `sc_user` WHERE id = %s", (3,))
 # 取出第一条记录
 result = cur.fetchone()
 print("type: ", type(result))
