@@ -15,6 +15,9 @@ mysql-connector = "*"
 pyecharts = "*"
 snapshot-selenium = "*"
 jupyter = "*"
+matplotlib = "*"
+pandas = "*"
+numpy = "*"
 
 [requires]
 python_version = "3.7"
