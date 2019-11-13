@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import json
+
 from logger import Logger
 
 Log = Logger.get_log()
@@ -9,13 +10,12 @@ Log = Logger.get_log()
 接口列表
 """
 
-"""
-1.查询海报列表
-"""
 
-
-# 海报列表成功的回调
 def select_active_poster_list_succ_callback(content):
+    """
+    1.查询海报列表
+    海报列表成功的回调
+    """
     if content["code"] == 9:
         Log.info("【查询海报列表】发生异常：", content["msg"])
         return False
@@ -61,12 +61,11 @@ selectActivePosterList = {
     "succ_callback": select_active_poster_list_succ_callback
 }
 
-"""
-2.查询是否有报名资格
-"""
-
 
 def select_recommend_qualifications_callback(content):
+    """
+    2.查询是否有报名资格
+    """
     print(content)
 
 
@@ -86,10 +85,11 @@ selectRecommendQualifications = {
     "succ_callback": select_recommend_qualifications_callback
 }
 
-"""
-3.查询活动海报详情页面
-"""
+
 def select_active_poster_byid_callback(content):
+    """
+    3.查询活动海报详情页面
+    """
     print(content)
 
 
@@ -118,11 +118,11 @@ selectActivePosterById = {
     "succ_callback": select_active_poster_byid_callback
 }
 
-"""
-4.查询所有行业
-"""
 
 def get_all_merchant_trade_list_callback(content):
+    """
+    4.查询所有行业
+    """
     print(content)
 
 
@@ -148,11 +148,11 @@ getAllMerchantTradeList = {
     "succ_callback": get_all_merchant_trade_list_callback
 }
 
-"""
-5.小程序-（千人报名）智享课堂报名海报-查看报名详情
-"""
 
 def select_sign_detail_callback(content):
+    """
+    5.小程序-（千人报名）智享课堂报名海报-查看报名详情
+    """
     print(content)
 
 
@@ -200,11 +200,11 @@ selectSignDetail = {
     "succ_callback": select_sign_detail_callback
 }
 
-"""
-6.检查手机号是否已报名
-"""
 
 def select_byphone_callback(content):
+    """
+    6.检查手机号是否已报名
+    """
     print(content)
 
 
@@ -231,11 +231,11 @@ selectByPhone = {
     "succ_callback": select_byphone_callback
 }
 
-"""
-7.小程序-（千人报名）智享课堂报名海报-报名、下订单
-"""
 
 def active_poster_singup_callback(content):
+    """
+    7.小程序-（千人报名）智享课堂报名海报-报名、下订单
+    """
     print(content)
 
 
@@ -280,11 +280,11 @@ activePosterSingup = {
     "succ_callback": active_poster_singup_callback
 }
 
-"""
-8.发起支付，拉起支付窗口
-"""
 
 def unified_order_callback(content):
+    """
+    8.发起支付，拉起支付窗口
+    """
     print(content)
 
 
