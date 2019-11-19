@@ -18,6 +18,8 @@ jupyter = "*"
 matplotlib = "*"
 pandas = "*"
 numpy = "*"
+dbutils = "*"
+mysqldb = "*"
 
 [requires]
 python_version = "3.7"
