@@ -6,14 +6,12 @@
 """
 from apscheduler.schedulers.background import BackgroundScheduler
 
-from collect import collect
+from spider.collect import collect
 
 scheduler = BackgroundScheduler()
 
 
-"""
-定时任务每 10秒执行一次
-"""
 def start():
+    """定时任务每 10秒执行一次"""
     scheduler.add_job(collect.start_collect, 'interval', seconds=5)
     scheduler.start()

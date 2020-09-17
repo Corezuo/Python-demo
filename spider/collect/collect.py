@@ -8,11 +8,12 @@ from bs4 import BeautifulSoup
 ~~~~~~~~~~~~~~~~~~
 """
 
-"""
-请求页面数据
-使用的三方库 requests
-"""
+
 def _get_zhihu_hot_page():
+    """
+    请求页面数据
+    使用的三方库 requests
+    """
     url = "https://www.zhihu.com/hot"
     headers = {
         "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36",
@@ -30,13 +31,13 @@ def _get_zhihu_hot_page():
         return None
 
 
-"""
-解析知乎hot页面Top 50元素
-
-提取元素（标题、链接、简介、配图、热度）
-使用的三方库 BeautifulSoup
-"""
 def _parse_hot_item_element(content):
+    """
+    解析知乎hot页面Top 50元素
+
+    提取元素（标题、链接、简介、配图、热度）
+    使用的三方库 BeautifulSoup
+    """
     # 对源代码进行美化
     soup = BeautifulSoup(content, "html.parser")
     s = soup.prettify()
@@ -80,18 +81,18 @@ def _parse_hot_item_element(content):
     return section_list
 
 
-"""
-方案一：通过缓存调度，采集数据，写入内存数据
-"""
 def start_collect():
+    """
+    方案一：通过缓存调度，采集数据，写入内存数据
+    """
     html_content = _get_zhihu_hot_page()
     section_list = _parse_hot_item_element(html_content)
     print(section_list)
 
 
-"""
-方案二：实时查询
-"""
 def get_hot_list():
+    """
+    方案二：实时查询
+    """
     html_content = _get_zhihu_hot_page()
     return _parse_hot_item_element(html_content)

@@ -4,7 +4,7 @@
 web服务器
 """
 from flask import Flask, send_file
-from collect import collect
+from spider.collect import collect
 import json
 
 webapp = Flask(__name__,
@@ -12,18 +12,15 @@ webapp = Flask(__name__,
                static_folder="../html/static",
                template_folder="../html")
 
-"""
-展示的静态页面
-"""
+
 @webapp.route("/index", methods=["GET"])
 def index():
+    """展示的静态页面"""
     return send_file('../html/index.html')
 
 
-"""
-查询知乎热点数据
-"""
 @webapp.route("/hot-list", methods=["GET"])
 def query_hot_list():
+    """查询知乎热点数据"""
     hot_list = collect.get_hot_list()
     return json.dumps(hot_list)
