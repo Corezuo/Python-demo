@@ -6,12 +6,14 @@
 
 import socket
 
-client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-client.connect(('localhost', 4000))
-while True:
-    msg = 'hello server！'
-    client.send(msg.encode('utf-8'))
-    data = client.recv(1024)
-    print('recv:', data.decode())
-client.close()
+sk = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+sk.connect(('localhost', 8009))
+
+if __name__ == '__main__':
+    while True:
+        inp = input('place input:')
+        sk.send(inp.encode('utf-8'))
+        if inp == 'exit':
+            break
+    sk.close()
 
