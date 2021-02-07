@@ -16,7 +16,7 @@ while True:
     while True:
         try:
             data = conn.recv(1024)
-            print('recive:',data.decode())
+            print('receive:', data.decode())
             conn.send(data.upper())
         except ConnectionResetError as e:
             print('关闭了正在占线的链接！')
