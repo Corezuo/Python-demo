@@ -17,7 +17,9 @@ class ProxyServer(BaseRequestHandler):
         while True:
             try:
                 data = conn.recv(1024)
-                print('receive:', data.decode())
+                if not data:
+                    print("客户端断开连接")
+                    break
                 conn.send(data.upper())
             except ConnectionResetError as e:
                 print('关闭了正在占线的链接！')
@@ -25,5 +27,5 @@ class ProxyServer(BaseRequestHandler):
 
 
 if __name__ == '__main__':
-    server = ThreadingTCPServer(('127.0.0.1', 8009), ProxyServer)
+    server = ThreadingTCPServer(('127.0.0.1', 4000), ProxyServer)
     server.serve_forever()
